@@ -1,6 +1,7 @@
 const axios = require('axios');
 const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 const TourModel = require('../models/tourModel'); // Use require for importing
+const catchAsync = require('../utils/catchAsync');
 
 // Define the allowed place types
 const allowedPlaceTypes = [
@@ -61,3 +62,24 @@ exports.searchNearbyPlacesByType = async (req, res) => {
     res.status(500).json({ error: 'Error fetching data from Google Maps API' });
   }
 };
+
+exports.textSearch = catchAsync(async (req, res, next) => {
+  // Read query, location, and radius from request parameters
+  const { query, location, radius } = req.query;
+
+  // Perform a text search using the Google Places API
+  const textSearchURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&location=${location}&radius=${radius}&key=${apiKey}`;
+
+  // Use a library like 'axios' to make an HTTP request to the textSearchURL
+  // Parse and process the response
+  // Return the response to the client
+
+  // Example using axios
+  const response = await axios.get(textSearchURL);
+
+  // Process the response here, e.g., return the results to the client
+  res.status(200).json({
+    status: 'success',
+    results: response.data.results,
+  });
+});
