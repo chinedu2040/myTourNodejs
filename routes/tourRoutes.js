@@ -10,6 +10,6 @@ router.get('/search', authController.protect, tourController.searchPlacesByType)
 router.get('/places/nearby/:type', authController.protect, tourController.searchNearbyPlacesByType);
 
 // Add a new route for text-based place search
-router.get('/places/search', tourController.textSearch);
+router.get('/places/search', authController.protect, tourController.textSearch);
 
 module.exports = router;
