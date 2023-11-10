@@ -6,6 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const express = require('express');
+const cors = require('cors')
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
@@ -14,6 +15,8 @@ dotenv.config(); // Load environment variables from .env
 
 
 const app = express();
+
+app.use(cors());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
