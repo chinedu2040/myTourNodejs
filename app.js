@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 // Development logging
 if (process.env.NODE_ENV === 'production') {
-  app.use(morgan('dev'));
+  app.use(morgan('prod'));
 }
 
 
