@@ -19,12 +19,14 @@ const app = express();
 app.set('trust proxy', 1);
 
 // CORS setup
-const allowedOrigin = 'https://busy-blue-gharial.cyclic.app'; // Replace with your client's origin
+const allowedOrigins = ['https://frontend-mytour.vercel.app/', 'http://localhost:3000'];
+
 app.use(cors({
-  origin: allowedOrigin,
+  origin: allowedOrigins,
   methods: 'GET, POST, PUT, DELETE',
   credentials: true,
 }));
+
 
 // Set security HTTP headers
 app.use(helmet());
